@@ -14,5 +14,9 @@ process.on('unhandledRejection', (e) => {
 })
 
 app.listen(config.port, () => {
-    console.log('server is running on http://localhost:3001');
+    if (process.env.NODE_ENV === 'development') {
+        console.log(`The application is running on localhost:${config.port}`);
+    } else {
+        console.log(`The application is running in ${process.env.STAGE} mode on port ${config.port}`);
+    }
 })
